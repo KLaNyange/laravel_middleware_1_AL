@@ -35,7 +35,8 @@ Route::get('/articles', function () {
 
 Route::get('/users', function () {
     $roles = Role::all();
-    return view('pages.users', compact('roles'));
+    $users = User::all();
+    return view('pages.users', compact('roles', "users"));
 })->middleware(['userAccess'])->name('users');
 
 
