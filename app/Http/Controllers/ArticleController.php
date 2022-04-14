@@ -12,7 +12,11 @@ class ArticleController extends Controller
 {
     public function __construct()
     {
+
+        // $this->middleware('roleCheck');
         $this->middleware('roleCheck')->only(['create','edit', 'destroy']);
+        $this->middleware('editorPower')->only(['edit', 'destroy']);
+
     }
     /**
      * Display a listing of the resource.

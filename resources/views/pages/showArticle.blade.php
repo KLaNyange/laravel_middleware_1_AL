@@ -9,6 +9,8 @@
     {{ $message }}
     @enderror
 
+    {{-- {{ dd($article->user->id) }} --}}
+
     <section class="bg-gray-100 dark:bg-gray-900 lg:py-12 lg:flex lg:justify-center mt-44">
         <div class="bg-white dark:bg-gray-800 lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg w-1/2">
             <div class="lg:w-1/2">

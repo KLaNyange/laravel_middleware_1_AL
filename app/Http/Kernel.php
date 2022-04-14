@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'isConnected' => \App\Http\Middleware\isConnected::class,
         'roleCheck' => \App\Http\Middleware\RoleCheck::class,
         'userAccess' => \App\Http\Middleware\UserAccess::class,
+        'editorPower' => \App\Http\Middleware\EditorPower::class,
     ];
 }

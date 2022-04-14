@@ -8,7 +8,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RoleCheck
+class EditorPower
 {
     /**
      * Handle an incoming request.
@@ -19,12 +19,15 @@ class RoleCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        // $id = $request->id;
-        // $articles = Article::find($id);
-        if (Auth::check() && Auth::user()->role_id == 1 || Auth::user()->role_id == 3 || Auth::user()->role_id == 4) {
+        $id = $request->route('article');
+        $article = Article::find($id);
+        if (Auth::check()  && Auth::user()->role_id == 4 && Auth::user()->id == $id->user_id ) {
             return $next($request);
+            // dd('alixe');
         } else {
-            return redirect('/')->withErrors(['refused' => "you cannot do that"]);
+            // dd($id);
+            return redirect('/')->withErrors(['refused' => 'you cannot do that']);
         }
+
     }
 }
