@@ -33,6 +33,7 @@
                             <div class="flex justify-end mt-4">
                                 <a class="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700"
                                     href="/article/{{ $article->id }}">Show</a>
+                                @can('canDelete', $article)
                                 <form action="/article/{{ $article->id }}" method="post">
                                     @csrf
                                     @method('delete')
@@ -40,6 +41,7 @@
                                         class="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-red-900 rounded-md hover:bg-gray-700"
                                         type="submit">Delete</button>
                                 </form>
+                                @endcan
                             </div>
                         </div>
                     @endforeach
