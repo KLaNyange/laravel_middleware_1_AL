@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
 use App\Models\Article;
 use App\Models\Role;
 use App\Models\User;
@@ -43,3 +44,4 @@ Route::get('/users', function () {
 require __DIR__.'/auth.php';
 
 Route::resource('article', ArticleController::class);
+Route::resource('user', UserController::class);

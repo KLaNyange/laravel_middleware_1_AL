@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use phpDocumentor\Reflection\PseudoTypes\False_;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,10 +25,22 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        // On peut faire avec return ou avec if. Mais je pense que c'est plus opti de faire directement avec return
+
         $this->registerPolicies();
         Gate::define('canDelete', function($user, $article){
             return $article->user_id == $user->id;
         });
-        //
+        //le deuxieme parametre jne doit pas obligatoirement etre nommé de la meme facon que la variable qui en depend ex: ici le parametre est role mais dans mon users.blade c'est user que j'utilise
+        Gate::define('deleteUser', function($user, $role){
+            if (Auth::user()->role_id == 1 && $role->role_id != 1) {
+                return true ;
+            }
+
+        });
+        Gate::define('canEdit', function($user, $role){
+            return $role->role_id !=1;
+        });
     }
 }
