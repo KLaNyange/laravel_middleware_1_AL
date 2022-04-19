@@ -28,7 +28,8 @@
                             <div class="flex items-center justify-center ">
                                 <div class="bg-black flex flex-col w-80 border border-gray-900 rounded-lg px-8 py-10">
 
-                                    <form action="/user/{{ $edit->id }}" method="post" class="flex flex-col space-y-8 mt-10">
+                                    <form action="/user/{{ $edit->id }}" method="post"
+                                        class="flex flex-col space-y-8 mt-10">
                                         @csrf
                                         @method('put')
                                         <label class="font-bold text-lg text-white ">Name</label>
@@ -39,11 +40,20 @@
                                         <input type="email"
                                             class="border rounded-lg py-3 px-3 bg-black border-indigo-600 placeholder-white-500 text-white"
                                             value="{{ $edit->email }}" name="email">
-                                            <label class="font-bold text-lg text-white ">Role</label>
+                                        <label class="font-bold text-lg text-white ">Role</label>
                                         <select name="role_id" id="">
-                                            @foreach ($roles as $role)
-                                                <option  value="{{ $role->id }}">{{ $role->role}}</option>
-                                            @endforeach
+                                            {{-- @foreach ($roles as $role)
+                                                @can('roleChanger', $role)
+                                                    <option value="{{ $role->id }}">{{ $role->role }}</option>
+                                                @endcan
+                                            @endforeach --}}
+                                            @can('roleChange')
+                                            <option value="{{ $roles[0]->id }}">{{ $roles[0]->role }}</option>
+                                            <option value="{{ $roles[2]->id }}">{{ $roles[2]->role }}</option>
+                                            @endcan
+                                            <option value="{{ $roles[1]->id }}">{{ $roles[1]->role }}</option>
+
+                                            <option value="{{ $roles[3]->id }}">{{ $roles[3]->role }}</option>
                                         </select>
 
                                         <button type="submit"

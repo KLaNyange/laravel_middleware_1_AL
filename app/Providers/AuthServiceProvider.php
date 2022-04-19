@@ -34,13 +34,27 @@ class AuthServiceProvider extends ServiceProvider
         });
         //le deuxieme parametre jne doit pas obligatoirement etre nommé de la meme facon que la variable qui en depend ex: ici le parametre est role mais dans mon users.blade c'est user que j'utilise
         Gate::define('deleteUser', function($user, $role){
-            if (Auth::user()->role_id == 1 && $role->role_id != 1) {
+            if (Auth::user()->role_id == 1 && $role->role_id != 1 || $user->role_id == 3 && $role->role_id !=3 && $role->role_id != 1) {
                 return true ;
             }
 
         });
         Gate::define('canEdit', function($user, $role){
-            return $role->role_id !=1;
+            if ($user->role_id ==1 && $role->role_id != 1) {
+                return true;
+            }
+            if($user->role_id == 3 && $role->role_id != 3 && $role->role_id!=1){
+                return true;
+            }
+        });
+
+        Gate::define('roleChange', function($user){
+            if ($user->role_id == 1) {
+                return true;
+            }
+            if($user->role_id == 3){
+                return false;
+            }
         });
     }
 }
