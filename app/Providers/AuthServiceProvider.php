@@ -30,9 +30,13 @@ class AuthServiceProvider extends ServiceProvider
 
         $this->registerPolicies();
         Gate::define('canDelete', function($user, $article){
-            return $article->user_id == $user->id;
+            if ($user->role_id == 1 || $user->role_id == 4 || $user->role_id == 3) {
+                return $article->user_id == $user->id;
+                // dd($article);
+            }
+
         });
-        //le deuxieme parametre jne doit pas obligatoirement etre nommé de la meme facon que la variable qui en depend ex: ici le parametre est role mais dans mon users.blade c'est user que j'utilise
+        //le deuxieme parametre ne doit pas obligatoirement etre nommé de la meme facon que la variable qui en depend ex: ici le parametre est role mais dans mon users.blade c'est user que j'utilise
         Gate::define('deleteUser', function($user, $role){
             if (Auth::user()->role_id == 1 && $role->role_id != 1 || $user->role_id == 3 && $role->role_id !=3 && $role->role_id != 1) {
                 return true ;
@@ -48,13 +52,8 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
 
-        Gate::define('roleChange', function($user){
-            if ($user->role_id == 1) {
-                return true;
-            }
-            if($user->role_id == 3){
-                return false;
-            }
+        Gate::define('roleChange', function($user, $role){
+            return $user->role_id == 1 || $user->role_id == 3 && $role->id != 3 && $role->id != 1;
         });
     }
 }

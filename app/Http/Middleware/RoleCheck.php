@@ -21,7 +21,7 @@ class RoleCheck
     {
         // $id = $request->id;
         // $articles = Article::find($id);
-        if (Auth::check() && Auth::user()->role_id == 1 || Auth::user()->role_id == 3 || Auth::user()->role_id == 4) {
+        if (Auth::check() && Auth::user()->role_id == 1 || Auth::user()->role_id == 4 || Auth::user()->role_id == 3) {
             return $next($request);
         } else {
             return redirect('/')->withErrors(['refused' => "you cannot do that"]);

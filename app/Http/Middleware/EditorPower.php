@@ -21,7 +21,7 @@ class EditorPower
     {
         $id = $request->route('article');
         $article = Article::find($id);
-        if (Auth::check()  && Auth::user()->role_id == 4 && Auth::user()->id == $id->user_id ) {
+        if (Auth::check()  && Auth::user()->role_id == 4 && Auth::user()->id == $id->user_id || Auth::user()->role_id == 1) {
             return $next($request);
             // dd('alixe');
         } else {

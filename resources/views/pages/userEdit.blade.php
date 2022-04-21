@@ -10,7 +10,7 @@
         <div class="relative min-h-screen  grid bg-black ">
             <div
                 class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 ">
-                <div class="relative sm:w-1/2 xl:w-3/5 bg-blue-500 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden  text-white bg-no-repeat bg-cover relative"
+                <div class=" sm:w-1/2 xl:w-3/5 bg-blue-500 h-full hidden md:flex flex-auto items-center justify-center p-10 overflow-hidden  text-white bg-no-repeat bg-cover relative"
                     style="background-image: url(https://i.postimg.cc/mrgPMqpP/logo.png);">
                     <div class="absolute bg-black  opacity-25 inset-0 z-0"></div>
                     <div class="w-full  lg:max-w-2xl md:max-w-md z-10 items-center text-center ">
@@ -42,18 +42,18 @@
                                             value="{{ $edit->email }}" name="email">
                                         <label class="font-bold text-lg text-white ">Role</label>
                                         <select name="role_id" id="">
-                                            {{-- @foreach ($roles as $role)
-                                                @can('roleChanger', $role)
-                                                    <option value="{{ $role->id }}">{{ $role->role }}</option>
+                                            @foreach ($roles as $role)
+                                                @can('roleChange', $role)
+                                                    <option {{ $edit->role_id == $role->id ? "selected" : null}} value="{{ $role->id }}">{{ $role->role }}</option>
                                                 @endcan
-                                            @endforeach --}}
-                                            @can('roleChange')
+                                            @endforeach
+                                            {{-- @can('roleChange')
                                             <option value="{{ $roles[0]->id }}">{{ $roles[0]->role }}</option>
                                             <option value="{{ $roles[2]->id }}">{{ $roles[2]->role }}</option>
                                             @endcan
                                             <option value="{{ $roles[1]->id }}">{{ $roles[1]->role }}</option>
 
-                                            <option value="{{ $roles[3]->id }}">{{ $roles[3]->role }}</option>
+                                            <option value="{{ $roles[3]->id }}">{{ $roles[3]->role }}</option> --}}
                                         </select>
 
                                         <button type="submit"

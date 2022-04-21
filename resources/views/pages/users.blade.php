@@ -16,13 +16,17 @@
                     <div class="w-full max-w-xs text-center mt-3">
                         @if ($user->role->id == 1)
                             <img class="object-cover object-center w-full h-48 mx-auto rounded-lg"
-                                src="https://images.unsplash.com/photo-1493863641943-9b68992a8d07?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=739&q=80"
+                                src="https://images.unsplash.com/photo-1649321980892-9f2fbb821d92?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDEyfHRvd0paRnNrcEdnfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
                                 alt="avatar" />
                         @elseif ($user->role->id == 2)
                             <img class="object-cover object-center w-full h-48 mx-auto rounded-lg"
                                 src="https://images.unsplash.com/photo-1516756587022-7891ad56a8cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
                                 alt="avatar" />
-                        @else
+                        @elseif ($user->role->id == 3)
+                            <img class="object-cover object-center w-full h-48 mx-auto rounded-lg"
+                                src="https://images.unsplash.com/photo-1649817691459-cf2da24120a3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
+                                alt="avatar" />
+                        @elseif ($user->role->id == 4)
                             <img class="object-cover object-center w-full h-48 mx-auto rounded-lg"
                                 src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=731&q=80"
                                 alt="avatar" />

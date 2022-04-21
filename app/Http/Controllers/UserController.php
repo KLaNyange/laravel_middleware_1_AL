@@ -17,6 +17,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id){
         $user = User::find($id);
+        $this->authorize('userDelete', $user);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role_id = $request->role_id;
@@ -25,6 +26,7 @@ class UserController extends Controller
     }
     public function destroy($id){
         $users = User::find($id);
+        $this->authorize('userDelete', $users);
         $users->delete();
         return redirect()->back();    }
 }
