@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
+use App\Mail\ContactMail;
 use App\Models\Article;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,8 +44,20 @@ Route::get('/users', function () {
     return view('pages.users', compact('roles', "users"));
 })->middleware(['userAccess'])->name('users');
 
+Route::get('/contact', function () {
+    $users = User::all();
+    return view('pages.contact', compact( "users"));
+})->middleware(['isConnected'])->name('contact');
 
+
+// Route::get('/email', function(){
+//     Mail::to('info@info.com')->send(new ContactMail());
+//     return new ContactMail();
+// });
+
+// Route::get('/newMemberNotif', [NotificationController::class, 'newMember']);
 require __DIR__.'/auth.php';
 
 Route::resource('article', ArticleController::class);
 Route::resource('user', UserController::class);
+Route::resource('contacts', ContactController::class);

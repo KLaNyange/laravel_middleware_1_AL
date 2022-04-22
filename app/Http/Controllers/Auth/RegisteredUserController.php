@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeMail;
 use App\Models\User;
+use App\Notifications\NewMember;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -47,7 +50,18 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+
         Auth::login($user);
+        $newUser = User::first();
+
+        $newMemberData = [
+            'body' => 'Your sign up has been added successfully',
+            'text'=> 'Go check this',
+            'url'=>url('/'),
+            'thx'=>'Thank you for sign up'
+        ];
+
+        $newUser->notify(new NewMember($newMemberData));
 
         return redirect(RouteServiceProvider::HOME);
     }
