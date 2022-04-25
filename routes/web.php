@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use App\Mail\ContactMail;
 use App\Models\Article;
 use App\Models\Contact;
 use App\Models\Email;
+use App\Models\Newsletter;
 use App\Models\Role;
 use App\Models\Subject;
 use App\Models\User;
@@ -72,3 +74,4 @@ require __DIR__.'/auth.php';
 Route::resource('article', ArticleController::class);
 Route::resource('user', UserController::class);
 Route::resource('contacts', ContactController::class);
+Route::resource('newsletter', NewsletterController::class);
