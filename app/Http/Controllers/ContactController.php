@@ -39,6 +39,7 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $store = new Contact();
+        $store->subject = $request->subject;
         $store->email = $request->email;
         $store->text = $request->text;
         $store->user_id = Auth::user()->id;
@@ -49,7 +50,7 @@ class ContactController extends Controller
             'text' => $request->get('text'),
         ), function ($text) use ($request) {
             $text->from($request->email);
-            $text->to('info@gmail.com')->subject('contact');
+            $text->to('info@gmail.com')->subject($request->subject);
         });
 
         return redirect()->back();

@@ -13,7 +13,6 @@ class NotificationController extends Controller
         $user = User::first();
 
         $newMemberData= [
-            // 'name'=> 'fe',
             'body' => 'Your sign up has been added successfully',
             'text'=> 'Go check this',
             'url'=>url('/'),

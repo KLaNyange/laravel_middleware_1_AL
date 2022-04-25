@@ -21,6 +21,14 @@
                             @csrf
                             <div class="form">
                                 <div class="mb-3 space-y-2 w-full text-xs">
+                                    <label class=" font-semibold text-gray-600 py-2">Subject</label>
+                                    <div class="flex flex-wrap items-stretch w-full mb-4 relative">
+
+                                        <input type="text" name="subject"
+                                            class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border  h-10 border-grey-light rounded-lg  px-3 relative focus:border-blue focus:shadow">
+                                    </div>
+                                </div>
+                                <div class="mb-3 space-y-2 w-full text-xs">
                                     <label class=" font-semibold text-gray-600 py-2">Your email adress</label>
                                     <div class="flex flex-wrap items-stretch w-full mb-4 relative">
 
