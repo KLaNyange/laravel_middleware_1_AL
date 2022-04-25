@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\Email;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 
-class ContactController extends Controller
+class EmailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,36 +34,22 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        $store = new Contact();
-        $emailstore = new Email();
-        $store->subject = $request->subject;
-        $store->email = $request->email;
-        $emailstore->emails = $request->email;
-        $store->text = $request->text;
-        $store->user_id = Auth::user()->id;
+        $contact = Contact::find($id);
+        $store = new Email();
+        $store->email = $contact->email;
         $store->save();
-        $emailstore->save();
-
-        Mail::send('mails.contact', array(
-            'email' => $request->get('email'),
-            'text' => $request->get('text'),
-        ), function ($text) use ($request) {
-            $text->from($request->email);
-            $text->to('info@gmail.com')->subject($request->subject);
-        });
-
-        return redirect()->back();
+        return redirect('/email');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
+    public function show(Email $email)
     {
         //
     }
@@ -74,10 +57,10 @@ class ContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
+    public function edit(Email $email)
     {
         //
     }
@@ -86,10 +69,10 @@ class ContactController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, Email $email)
     {
         //
     }
@@ -97,10 +80,10 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Contact  $contact
+     * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy(Email $email)
     {
         //
     }

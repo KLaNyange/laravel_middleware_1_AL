@@ -6,8 +6,11 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
 use App\Mail\ContactMail;
 use App\Models\Article;
+use App\Models\Contact;
+use App\Models\Email;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +51,12 @@ Route::get('/contact', function () {
     $users = User::all();
     return view('pages.contact', compact( "users"));
 })->middleware(['isConnected'])->name('contact');
+
+Route::get('/email', function () {
+    $emails = Email::all();
+    $seederMails = User::all();
+    return view('pages.emails', compact('emails', 'seederMails'));
+})->middleware(['roleCheck'])->name('email');
 
 
 // Route::get('/email', function(){
