@@ -28,6 +28,6 @@ class WelcomeMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mails.welcome');
+        return $this->markdown('mails.welcome')->subject("You're a new member");
     }
 }
