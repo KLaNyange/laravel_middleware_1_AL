@@ -16,17 +16,17 @@
                         <h2 class="font-semibold text-lg mr-auto">Contact us</h2>
                         <div class="w-full sm:w-auto sm:ml-auto mt-3 sm:mt-0"></div>
                     </div>
+                    {{-- {{ dd($subjects) }} --}}
                     <div class="mt-5">
                         <form action="/contacts" method="post">
                             @csrf
                             <div class="form">
                                 <div class="mb-3 space-y-2 w-full text-xs">
-                                    <label class=" font-semibold text-gray-600 py-2">Subject</label>
-                                    <div class="flex flex-wrap items-stretch w-full mb-4 relative">
-
-                                        <input type="text" name="subject"
-                                            class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border  h-10 border-grey-light rounded-lg  px-3 relative focus:border-blue focus:shadow">
-                                    </div>
+                                    <select name="subject_id" id="">
+                                        @foreach ($subjects as $subject)
+                                            <option value="{{$subject->id }}">{{ $subject->subject}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="mb-3 space-y-2 w-full text-xs">
                                     <label class=" font-semibold text-gray-600 py-2">Your email adress</label>
@@ -37,8 +37,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-auto w-full mb-1 text-xs space-y-2">
-                                    <textarea required="" name="text" id=""
-                                        class="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4"
+                                    <textarea required="" name="text" id="" class="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4"
                                         placeholder="Enter your message" spellcheck="false"></textarea>
                                 </div>
                                 <div class="mt-5 text-right md:space-x-3 md:block flex flex-col-reverse">

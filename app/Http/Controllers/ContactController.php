@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use App\Models\Email;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,8 @@ class ContactController extends Controller
     {
         $store = new Contact();
         $emailstore = new Email();
-        $store->subject = $request->subject;
+
+        $store->subject_id = $request->subject_id;
         $store->email = $request->email;
         $emailstore->emails = $request->email;
         $store->text = $request->text;
@@ -53,8 +55,11 @@ class ContactController extends Controller
             'email' => $request->get('email'),
             'text' => $request->get('text'),
         ), function ($text) use ($request) {
+            $subject = Subject::all();
             $text->from($request->email);
-            $text->to('info@gmail.com')->subject($request->subject);
+            $text->to('info@gmail.com')->subject($subject[($request->subject_id)-1]->subject);
+            // dd($request->subject_id);
+            // $text->to('info@gmail.com')->subject($request->subject_id);
         });
 
         return redirect()->back();

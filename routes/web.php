@@ -9,6 +9,7 @@ use App\Models\Article;
 use App\Models\Contact;
 use App\Models\Email;
 use App\Models\Role;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -48,8 +49,9 @@ Route::get('/users', function () {
 })->middleware(['userAccess'])->name('users');
 
 Route::get('/contact', function () {
-    $users = User::all();
-    return view('pages.contact', compact( "users"));
+    $subjects = Subject::all();
+    // dd($contacts);
+    return view('pages.contact', compact( "subjects"));
 })->middleware(['isConnected'])->name('contact');
 
 Route::get('/email', function () {

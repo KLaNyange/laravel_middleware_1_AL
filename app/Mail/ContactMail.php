@@ -31,5 +31,6 @@ class ContactMail extends Mailable
     {
         $user = Contact::all();
         return $this->view('mails.contact', compact('user')) ;
+        // return $this->markdown('mails.contact', compact('user')) ;
     }
 }
