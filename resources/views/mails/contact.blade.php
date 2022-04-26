@@ -12,7 +12,7 @@
 
 <body>
     <section>
-        <h1 style="color: red;" class="font-bold text-2xl">you just received an email from {{ $email }}</h1>
+        <h1 style="color: red; text-align:centerbh ;" class="font-bold text-2xl">you just received an email from {{ $email }}</h1>
         <article class="mt-8 text-gray-500 leading-7 tracking-wider">
             <p>Hi {{ config('app.name') }}</p>
             <p>{{ $text }}</p>

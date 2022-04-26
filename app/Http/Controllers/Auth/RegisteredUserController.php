@@ -52,18 +52,18 @@ class RegisteredUserController extends Controller
 
 
         Auth::login($user);
-        // $newUser = User::first();
+        $newUser = User::first();
 
-        // $newMemberData = [
-        //     'body' => 'Your sign up has been added successfully',
-        //     'text'=> 'Go check this',
-        //     'url'=>url('/'),
-        //     'thx'=>'Thank you for sign up'
-        // ];
+        $newMemberData = [
+            'body' => 'Your sign up has been added successfully',
+            'text'=> 'Go check this',
+            'url'=>url('/'),
+            'thx'=>'Thank you for sign up'
+        ];
 
-        // $newUser->notify(new NewMember($newMemberData));
-        Mail::to($request->email)->send(new WelcomeMail());
+        $newUser->notify(new NewMember($newMemberData));
+        // Mail::to($request->email)->send(new WelcomeMail());
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('RouteServiceProvider::HOME');
     }
 }

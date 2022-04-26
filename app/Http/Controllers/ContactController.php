@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Models\Contact;
 use App\Models\Email;
 use App\Models\Subject;
@@ -57,10 +58,11 @@ class ContactController extends Controller
         ), function ($text) use ($request) {
             $subject = Subject::all();
             $text->from($request->email);
-            $text->to('info@gmail.com')->subject($subject[($request->subject_id)-1]->subject);
+            $text->to(config('mail.from.address'))->subject($subject[($request->subject_id)-1]->subject);
             // dd($request->subject_id);
             // $text->to('info@gmail.com')->subject($request->subject_id);
         });
+
 
         return redirect()->back();
     }

@@ -16,8 +16,9 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            'title' => $this->faker->text(15),
+            'title' => $this->faker->unique()->realText(15, 2),
             'text'=> $this->faker->realText(),
             'user_id'=>$this->faker->randomElement([1,3,4,5,6])
         ];

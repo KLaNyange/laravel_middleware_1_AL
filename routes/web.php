@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\NotificationController;
@@ -75,3 +76,4 @@ Route::resource('article', ArticleController::class);
 Route::resource('user', UserController::class);
 Route::resource('contacts', ContactController::class);
 Route::resource('newsletter', NewsletterController::class);
+Route::resource('comment', CommentController::class);

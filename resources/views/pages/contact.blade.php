@@ -33,7 +33,7 @@
                                     <div class="flex flex-wrap items-stretch w-full mb-4 relative">
 
                                         <input type="email" name="email"
-                                            class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border  h-10 border-grey-light rounded-lg  px-3 relative focus:border-blue focus:shadow">
+                                            class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border  h-10 border-grey-light rounded-lg  px-3 relative focus:border-blue focus:shadow" value="{{ Auth::user()->email }}">
                                     </div>
                                 </div>
                                 <div class="flex-auto w-full mb-1 text-xs space-y-2">
