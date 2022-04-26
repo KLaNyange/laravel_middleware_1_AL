@@ -36,7 +36,7 @@
             <section class="rounded-b-lg  mt-4 ">
 
 
-                <form action="/comment" accept-charset="UTF-8" method="post">
+                <form action="/comment/{{ $article->id }}" accept-charset="UTF-8" method="post">
                     @csrf
                     <textarea class="w-full shadow-inner p-4 border-0 mb-4 rounded-lg focus:shadow-outline text-2xl"
                         placeholder="Post your comments here" cols="6" rows="6" id="comment_content" spellcheck="false"
@@ -50,24 +50,25 @@
 
         </div>
     </section>
-    <div id="task-comments" class="flex flex-col items-center">
-        <!--     comment-->
-        @foreach ($comments as $comment)
-            <div
-                class="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4 w-2/3">
-                <div class="flex flex-row justify-center mr-2">
-                    <img alt="avatar" width="48" height="48" class="rounded-full w-10 h-10 mr-4 shadow-lg mb-4"
-                        src="https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png">
-                    <h3 class="text-purple-600 font-semibold text-lg text-center md:text-left ">
-                        {{ Auth::user()->name }}</h3>
+        <div id="task-comments" class="flex flex-col items-center">
+            <!--     comment-->
+            @foreach ($article->comment as $comment)
+                <div
+                    class="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4 w-2/3">
+                    <div class="flex flex-row justify-center mr-2">
+                        <img alt="avatar" width="48" height="48" class="rounded-full w-10 h-10 mr-4 shadow-lg mb-4"
+                            src="https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png">
+                        <h3 class="text-purple-600 font-semibold text-lg text-center md:text-left ">
+                            {{ $comment->user->name }}</h3>
+                    </div>
+
+
+                    <p style="width: 90%" class="text-gray-600 text-lg text-center md:text-left ">{{ $comment->comment }}
+                    </p>
+
+
                 </div>
-
-
-                <p style="width: 90%" class="text-gray-600 text-lg text-center md:text-left ">{{ $comment->comment }}</p>
-
-
-            </div>
-        @endforeach
-        <!--  comment end-->
-    </div>
+            @endforeach
+            <!--  comment end-->
+        </div>
 </x-app-layout>

@@ -69,6 +69,8 @@ Route::get('/email', function () {
 //     return new ContactMail();
 // });
 
+Route::post('comment/{id}', [CommentController::class, 'storeComment']);
+
 // Route::get('/newMemberNotif', [NotificationController::class, 'newMember']);
 require __DIR__.'/auth.php';
 

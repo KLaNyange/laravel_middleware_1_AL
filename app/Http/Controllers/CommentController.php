@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-       //
+        //
     }
 
     /**
@@ -34,11 +35,12 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeComment(Request $request, $id)
     {
         $store = new Comment();
         $store->comment = $request->comment;
         $store->user_id = Auth::user()->id;
+        $store->article_id = $id;
         $store->save();
         return redirect()->back();
     }
