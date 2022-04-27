@@ -57,5 +57,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('roleChange', function($user, $role){
             return $user->role_id == 1 || $user->role_id == 3 && $role->id != 3 && $role->id != 1;
         });
+
+        Gate::define('canComment', function($user, $article){
+            return $user->id != $article->user_id;
+        });
     }
 }

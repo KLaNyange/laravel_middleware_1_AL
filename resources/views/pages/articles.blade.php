@@ -30,17 +30,26 @@
                                 <a href="#"
                                     class="text-xl font-medium text-blue-500 dark:text-blue-300">{{ $article->user->name }}</a>
                             </div>
-                            <div class="flex justify-end mt-4">
+                            <div class="flex justify-between mt-4">
+                                {{-- @if (count($article->comment) <= 1)
+                                    <p class="mt-2 text-gray-600 dark:text-gray-200">Comment: {{ count($article->comment) }}
+                                    </p>
+                                    @else
+                                    <p class="mt-2 text-gray-600 dark:text-gray-200">Comments: {{ count($article->comment) }}
+                                    </p>
+                                @endif --}}
+                                <p class="mt-2 text-gray-600 dark:text-gray-200">{{ count($article->comment) <= 1 ? ' Comment: ' : ' Comments: ' }} {{ count($article->comment) }}
+                                </p>
                                 <a class="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-gray-900 rounded-md hover:bg-gray-700"
                                     href="/article/{{ $article->id }}">Show</a>
                                 @can('canDelete', $article)
-                                <form action="/article/{{ $article->id }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button
-                                        class="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-red-900 rounded-md hover:bg-gray-700"
-                                        type="submit">Delete</button>
-                                </form>
+                                    <form action="/article/{{ $article->id }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button
+                                            class="px-5 py-2 font-semibold text-gray-100 transition-colors duration-200 transform bg-red-900 rounded-md hover:bg-gray-700"
+                                            type="submit">Delete</button>
+                                    </form>
                                 @endcan
                             </div>
                         </div>

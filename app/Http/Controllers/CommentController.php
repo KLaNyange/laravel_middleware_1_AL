@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Comment;
+use App\Models\User;
+use App\Notifications\NewComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,6 +44,17 @@ class CommentController extends Controller
         $store->user_id = Auth::user()->id;
         $store->article_id = $id;
         $store->save();
+        $article = Article::find($id);
+        $user = User::find($article->user_id);
+
+        $newCommentData= [
+            'body' => 'Your article has been commented',
+            'text'=> 'Go check this',
+            'url'=>url('/articles'),
+            'thx'=>'Do forget to reply'
+        ];
+
+        $user->notify(new NewComment($newCommentData));
         return redirect()->back();
     }
 

@@ -8,6 +8,7 @@ use App\Models\User;
 use CreatePersonalAccessTokensTable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -63,8 +64,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        $comments = Comment::all();
-        return view('pages.showArticle', compact('article', 'comments'));
+        $comment = DB::table('articles')->orderBy('created_at', 'desc')->get();
+        return view('pages.showArticle', compact('article', 'comment'));
     }
 
     /**

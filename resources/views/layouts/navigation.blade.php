@@ -1,3 +1,5 @@
+<div class="hidden">{{ $comments = App\Models\Comment::all() }}</div>
+
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,7 +17,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('articles')" :active="request()->routeIs('articles')">
+                    <x-nav-link :href="route('articles')" :active="request()->routeIs('articles')"><span class="{{ count($comments) < 1 ?  : 'badge bg-red-800 rounded-full px-1  text-center object-right-top text-white text-sm mr-1' }}">{{ count($comments) == 0 ? ' ' : count($comments) }}</span>
                         {{ __('Articles') }}
                     </x-nav-link>
                     <x-nav-link :href="route('users')" :active="request()->routeIs('users')">

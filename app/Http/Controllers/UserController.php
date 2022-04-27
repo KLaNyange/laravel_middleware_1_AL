@@ -28,5 +28,6 @@ class UserController extends Controller
         $users = User::find($id);
         $this->authorize('userDelete', $users);
         $users->delete();
-        return redirect()->back();    }
+        return redirect()->back();
+    }
 }

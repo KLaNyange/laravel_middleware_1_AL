@@ -770,6 +770,9 @@ select {
 .mb-6 {
   margin-bottom: 1.5rem;
 }
+.mr-1 {
+  margin-right: 0.25rem;
+}
 .block {
   display: block;
 }
@@ -1175,6 +1178,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
+.bg-red-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(153 27 27 / var(--tw-bg-opacity));
+}
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
@@ -1204,6 +1211,10 @@ select {
 .object-center {
   -o-object-position: center;
      object-position: center;
+}
+.object-right-top {
+  -o-object-position: right top;
+     object-position: right top;
 }
 .p-6 {
   padding: 1.5rem;
