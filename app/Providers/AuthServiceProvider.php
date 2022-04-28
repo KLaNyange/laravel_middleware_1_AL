@@ -61,5 +61,15 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('canComment', function($user, $article){
             return $user->id != $article->user_id;
         });
+
+        Gate::define('guestCannotSee', function($user){
+            return $user->role_id == 1 || 3 || 4;
+        });
+        Gate::define('memberCannotSee', function($user){
+            return $user->role_id != 2;
+        });
+        Gate::define('cannotSeeUser', function($user){
+            return $user->role_id !=2 && $user->role_id !=4;
+        });
     }
 }

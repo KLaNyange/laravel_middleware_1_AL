@@ -6,8 +6,13 @@ use App\Models\Article;
 use App\Models\Comment;
 use App\Models\User;
 use App\Notifications\NewComment;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Facades\Vonage;
+use Illuminate\Notifications\Messages\VonageMessage;
+use Illuminate\Notifications\Vonage as NotificationsVonage;
 use Illuminate\Support\Facades\Auth;
+use Vonage\SMS\Message\SMS;
 
 class CommentController extends Controller
 {
@@ -47,14 +52,31 @@ class CommentController extends Controller
         $article = Article::find($id);
         $user = User::find($article->user_id);
 
-        $newCommentData= [
+        $newCommentData = [
             'body' => 'Your article has been commented',
-            'text'=> 'Go check this',
-            'url'=>url('/articles'),
-            'thx'=>'Do forget to reply'
+            'text' => 'Go check this',
+            'url' => url('/articles'),
+            'thx' => 'Do forget to reply'
         ];
 
         $user->notify(new NewComment($newCommentData));
+
+        // $basic  = new \Vonage\Client\Credentials\Basic("cfbaf3c0", "ky53OG9YcF1tbaLr");
+        // $client = new \Vonage\Client($basic);
+
+        // $response = $client->sms()->send(
+        //     new VonageMessage()
+        // );
+
+
+        // $message = $response->current();
+
+        // if ($message->getStatus() == 0) {
+        //     echo "The message was sent successfully\n";
+        // } else {
+        //     echo "The message failed with status: " . $message->getStatus() . "\n";
+        // }
+
         return redirect()->back();
     }
 

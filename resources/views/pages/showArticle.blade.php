@@ -11,8 +11,8 @@
 
     {{-- {{ dd($article->user->id) }} --}}
 
-    <section class="bg-gray-100 dark:bg-gray-900 lg:py-12 lg:flex lg:justify-center mt-44">
-        <div class="bg-white dark:bg-gray-800 lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg w-1/2">
+    <section class="bg-gray-100 dark:bg-gray-900 lg:py-12 lg:flex lg:justify-between mt-44 w-2/3 mx-auto">
+        <div class="bg-white dark:bg-gray-800  lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg w-2/3">
             <div class="lg:w-1/2">
                 <div class="h-64 bg-cover lg:rounded-lg lg:h-full"
                     style="background-image:url('https://picsum.photos/200')">
@@ -32,29 +32,22 @@
         </div>
         <!-- component -->
         @can('canComment', $article)
-            <div>
-
-                <section class="rounded-b-lg  mt-4 ">
-
-
-                    <form action="/comment/{{ $article->id }}" accept-charset="UTF-8" method="post">
-                        @csrf
-                        <textarea class="w-full shadow-inner p-4 border-0 mb-4 rounded-lg focus:shadow-outline text-2xl"
-                            placeholder="Post your comments here" cols="6" rows="6" id="comment_content"
-                            spellcheck="false" name="comment"></textarea>
-                        <button
-                            class="font-bold py-2 px-4 w-full bg-purple-400 text-lg text-white shadow-md rounded-lg ">Comment
-                        </button>
-                    </form>
-
-                </section>
-
-            </div>
+            <section class="rounded-b-lg mt-4 w-[350px]">
+                <form action="/comment/{{ $article->id }}" accept-charset="UTF-8" method="post">
+                    @csrf
+                    <textarea class="w-full shadow-inner p-4 border-0 mb-4 rounded-lg focus:shadow-outline text-2xl"
+                        placeholder="Post your comment here" cols="6" rows="6" id="comment_content" spellcheck="false"
+                        name="comment"></textarea>
+                    <button
+                        class="font-bold py-2 px-4 w-full bg-purple-400 text-lg text-white shadow-md rounded-lg ">Comment
+                    </button>
+                </form>
+            </section>
         @endcan
     </section>
     <div id="task-comments" class="flex flex-col items-center">
         <!--     comment-->
-        @foreach ($article->comment as $comment)
+        @foreach ($article->comment->sortByDesc('created_at') as $comment)
             <div
                 class="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4 w-2/3">
                 <div class="flex flex-row justify-center mr-2">

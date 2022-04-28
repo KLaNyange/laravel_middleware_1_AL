@@ -12,13 +12,14 @@
 
 <body>
     <section>
-        <h1 style="color: red; text-align:centerbh ;" class="font-bold text-2xl">you just received an email from {{ $email }}</h1>
+        <h1 style="color: red; text-align:center;" class="font-bold text-2xl">you just received an email from {{ $email }}</h1>
         <article class="mt-8 text-gray-500 leading-7 tracking-wider">
             <p>Hi {{ config('app.name') }}</p>
             <p>{{ $text }}</p>
             <footer class="mt-12">
                 <p>Thanks & Regards,</p>
-                <p>{{ Auth::user()->name }}</p>
+                <p>{{Auth::check() ?  Auth::user()->name : "Guest" }}</p>
+                <p>{{Auth::check() && Auth::user()->role_id != 2 ?  Auth::user()->role->role : " " }}</p>
             </footer>
         </article>
     </section>

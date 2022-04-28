@@ -24,18 +24,34 @@
                                 <div class="mb-3 space-y-2 w-full text-xs">
                                     <select name="subject_id" id="">
                                         @foreach ($subjects as $subject)
-                                            <option value="{{$subject->id }}">{{ $subject->subject}}</option>
+                                            <option value="{{ $subject->id }}">{{ $subject->subject }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="mb-3 space-y-2 w-full text-xs">
-                                    <label class=" font-semibold text-gray-600 py-2">Your email adress</label>
-                                    <div class="flex flex-wrap items-stretch w-full mb-4 relative">
+                                @guest
+                                    <div class="mb-3 space-y-2 w-full text-xs">
+                                        <label class=" font-semibold text-gray-600 py-2">Your Name</label>
+                                        <div class="flex flex-wrap items-stretch w-full mb-4 relative">
 
-                                        <input type="email" name="email"
-                                            class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border  h-10 border-grey-light rounded-lg  px-3 relative focus:border-blue focus:shadow" value="{{ Auth::user()->email }}">
+                                            <input type="text" name="name"
+                                                class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border  h-10 border-grey-light rounded-lg  px-3 relative focus:border-blue focus:shadow"
+                                                >
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="mb-3 space-y-2 w-full text-xs">
+                                        <label class=" font-semibold text-gray-600 py-2">Your email adress</label>
+                                        <div class="flex flex-wrap items-stretch w-full mb-4 relative">
+
+                                            <input type="email" name="email"
+                                                class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border  h-10 border-grey-light rounded-lg  px-3 relative focus:border-blue focus:shadow"
+                                                >
+                                        </div>
+                                    </div>
+                                @endguest
+                                @auth
+                                <input type="hidden" name="name" value="{{ Auth::user()->name }}">
+                                <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+                                @endauth
                                 <div class="flex-auto w-full mb-1 text-xs space-y-2">
                                     <textarea required="" name="text" id="" class="w-full min-h-[100px] max-h-[300px] h-28 appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4"
                                         placeholder="Enter your message" spellcheck="false"></textarea>

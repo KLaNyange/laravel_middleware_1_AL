@@ -55,7 +55,7 @@ Route::get('/contact', function () {
     $subjects = Subject::all();
     // dd($contacts);
     return view('pages.contact', compact( "subjects"));
-})->middleware(['isConnected'])->name('contact');
+})->name('contact');
 
 Route::get('/email', function () {
     $emails = Email::all();

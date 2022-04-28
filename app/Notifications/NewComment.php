@@ -5,6 +5,7 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\VonageMessage;
 use Illuminate\Notifications\Notification;
 
 class NewComment extends Notification
@@ -42,10 +43,22 @@ class NewComment extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    // ->greeting("Hi ". )
-                    ->line($this->newCommentData['body'])
-                    ->action($this->newCommentData['text'], $this->newCommentData['url'])
-                    ->line($this->newCommentData['thx']);
+            // ->greeting("Hi ". )
+            ->line($this->newCommentData['body'])
+            ->action($this->newCommentData['text'], $this->newCommentData['url'])
+            ->line($this->newCommentData['thx']);
+    }
+
+    /**
+     * Get the Vonage / SMS representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\VonageMessage
+     */
+    public function toVonage($notifiable)
+    {
+        return (new VonageMessage())
+            ->content('Your SMS message content');
     }
 
     /**

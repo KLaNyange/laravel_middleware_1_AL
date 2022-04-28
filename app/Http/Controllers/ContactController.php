@@ -45,10 +45,11 @@ class ContactController extends Controller
         $emailstore = new Email();
 
         $store->subject_id = $request->subject_id;
+        $store->name = $request->name;
         $store->email = $request->email;
         $emailstore->emails = $request->email;
         $store->text = $request->text;
-        $store->user_id = Auth::user()->id;
+        // $store->user_id = Auth::user()->id;
         $store->save();
         $emailstore->save();
 
